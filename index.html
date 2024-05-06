@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="manifest" href="manifest.json">
+</head>
+
+    
+<body>
+    <h1>weather app</h1>
+  
+    <form onsubmit="getWeather(); return false">
+  
+      <input type="text" name="" id="cityName">
+  
+      <button type="submit">search weather</button>
+  
+    </form>
+  
+    <div id="result"></div>
+  
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+    <script>
+  
+  
+  
+      let getWeather = () => {
+  
+  
+        let cityName = document.querySelector("#cityName").value
+  
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?units=matric&appid=b302b4f979091ae197975a27202e7979&q=${cityName}`)
+          .then(function (response) {
+            // handle success
+  
+            console.log(response.data);
+
+
+            document.querySelector("#result").innerHTML = `<h1>${response.data.name}</h1>
+            <h1>${response.data.main.temp} °C</h1>`
+          })
+  
+  
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          })
+      }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    </script>
+  
+  
+  </body>
+  
+  </html>
